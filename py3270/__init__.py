@@ -396,7 +396,7 @@ class Emulator(object):
         ypos -= 1
         self.exec_command("MoveCursor({0}, {1})".format(ypos, xpos).encode("ascii"))
 
-    def send_string(self, tosend, ypos=None, xpos=None):
+    def send_string(self, tosend, ypos=None, xpos=None, **kwargs):
         """
             Send a string to the screen at the current cursor location or at
             screen co-ordinates `ypos`/`xpos` if they are both given.
@@ -437,7 +437,7 @@ class Emulator(object):
         pf = "PF({})".format(value)
         self.exec_command(bytes(pf.encode("utf-8")))
 
-    def string_get(self, ypos, xpos, length):
+    def string_get(self, ypos, xpos, length, **kwargs):
         """
             Get a string of `length` at screen co-ordinates `ypos`/`xpos`
 
@@ -454,7 +454,7 @@ class Emulator(object):
         assert len(cmd.data) == 1, cmd.data
         return cmd.data[0].decode("ascii")
 
-    def string_found(self, ypos, xpos, string):
+    def string_found(self, ypos, xpos, string, **kwargs):
         """
             Return True if `string` is found at screen co-ordinates
             `ypos`/`xpos`, False otherwise.
